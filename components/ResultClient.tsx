@@ -133,6 +133,7 @@ const renderDescription = (description: string) => {
 
 export default function ResultClient() {
   const [copied, setCopied] = useState(false);
+  const [openImage, setOpenImage] = useState(false);
   const searchParams = useSearchParams();
   const typeId = searchParams?.get('type');
   const result = typeId ? getTypeInfo(typeId) : null;
@@ -195,11 +196,18 @@ export default function ResultClient() {
                 {renderDescription(result.description)}
               </div>
             </div>
-            <div className="space-y-6">
+            <div className="space-y-6 order-first md:order-last">
               <div className="overflow-hidden rounded-[1.75rem] border border-amber-300/20 bg-slate-950/95 p-4 shadow-[0_20px_40px_rgba(0,0,0,0.25)]">
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.5rem] bg-slate-800">
-                  <Image src={result.image} alt={result.label} fill className="object-contain" />
-                </div>
+                <button
+                  type="button"
+                  onClick={() => setOpenImage(true)}
+                  className="relative block w-full cursor-zoom-in focus:outline-none"
+                  aria-label="画像を拡大表示"
+                >
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.5rem] bg-slate-800">
+                    <Image src={result.image} alt={result.label} fill className="object-contain" />
+                  </div>
+                </button>
               </div>
               <div className="rounded-[1.75rem] border border-amber-300/15 bg-slate-900/90 p-5 text-slate-300">
                 <p className="text-sm uppercase tracking-[0.22em] text-amber-200">鑑定書メモ</p>
@@ -210,6 +218,14 @@ export default function ResultClient() {
         </div>
       ) : (
         <div className="rounded-[1.75rem] border border-amber-300/20 bg-slate-950/90 p-8 text-center text-slate-300">診断結果が見つかりません。もう一度診断を受けてください。</div>
+      )}
+
+      {openImage && result && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4" onClick={() => setOpenImage(false)}>
+          <div className="relative mx-auto w-[90vw] max-w-3xl h-[70vh]">
+            <Image src={result.image} alt={result.label} fill className="object-contain" />
+          </div>
+        </div>
       )}
 
       <div className="mt-10 grid gap-4 sm:grid-cols-2">
