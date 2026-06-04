@@ -192,11 +192,6 @@ export default function ResultClient() {
               <div className="rounded-[1.75rem] border border-amber-300/20 bg-slate-950/90 p-6 shadow-[inset_0_0_0_1px_rgba(245,158,11,0.08)]">
                 <div className="text-3xl font-semibold text-amber-100">{result.name}</div>
               </div>
-              <div className="rounded-[1.75rem] border border-amber-300/20 bg-slate-950/95 p-6 text-slate-100">
-                {renderDescription(result.description)}
-              </div>
-            </div>
-            <div className="space-y-6 order-first md:order-last">
               <div className="overflow-hidden rounded-[1.75rem] border border-amber-300/20 bg-slate-950/95 p-4 shadow-[0_20px_40px_rgba(0,0,0,0.25)]">
                 <button
                   type="button"
@@ -209,6 +204,11 @@ export default function ResultClient() {
                   </div>
                 </button>
               </div>
+              <div className="rounded-[1.75rem] border border-amber-300/20 bg-slate-950/95 p-6 text-slate-100">
+                {renderDescription(result.description)}
+              </div>
+            </div>
+            <div className="space-y-6">
               <div className="rounded-[1.75rem] border border-amber-300/15 bg-slate-900/90 p-5 text-slate-300">
                 <p className="text-sm uppercase tracking-[0.22em] text-amber-200">鑑定書メモ</p>
                 <p className="mt-3 text-sm leading-7 text-slate-400">この紋章は、あなたの冒険に必要な強みと、気をつけるべき注意点を教えてくれます。ゆっくりと読み解いてください。</p>

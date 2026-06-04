@@ -1,6 +1,9 @@
 import { questions } from './questions';
 import { getTypeInfo as getTypeInfoFromMap, typeMap } from './types';
 
+const getTypeSlugFromImage = (imagePath: string) =>
+  imagePath.split('/').pop()?.replace(/\.png$/, '') ?? '';
+
 export function calculateType(answerIndices: number[]) {
   const totals = { e: 0, s: 0, t: 0, j: 0 };
 
@@ -21,9 +24,13 @@ export function calculateType(answerIndices: number[]) {
   ].join('');
 
   const finalType = typeMap.find((item) => item.id === id);
-  return finalType ? finalType.id : 'INFJ';
+  return finalType ? getTypeSlugFromImage(finalType.image) : getTypeSlugFromImage(typeMap[0].image);
 }
 
 export function getTypeInfo(typeId: string) {
-  return getTypeInfoFromMap(typeId);
+  return (
+    getTypeInfoFromMap(typeId) ??
+    typeMap.find((item) => getTypeSlugFromImage(item.image) === typeId) ??
+    null
+  );
 }
