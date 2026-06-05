@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import BannerLinks from '@/components/BannerLinks';
 
 export default function HomePage() {
   return (
@@ -41,6 +42,7 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
+        <BannerLinks />
       </div>
     </main>
   );

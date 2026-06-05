@@ -1,4 +1,5 @@
 import Questionnaire from '@/components/Questionnaire';
+import BannerLinks from '@/components/BannerLinks';
 
 export default function QuestionsPage() {
   return (
@@ -12,6 +13,7 @@ export default function QuestionsPage() {
           </p>
         </div>
         <Questionnaire />
+        <BannerLinks />
       </div>
     </main>
   );

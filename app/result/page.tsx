@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import ResultClient from '@/components/ResultClient';
+import BannerLinks from '@/components/BannerLinks';
 
 export default function ResultPage() {
   return (
@@ -14,6 +15,7 @@ export default function ResultPage() {
         <Suspense fallback={<div className="p-8 text-center text-slate-400">読み込み中...</div>}>
           <ResultClient />
         </Suspense>
+        <BannerLinks />
       </div>
     </main>
   );
